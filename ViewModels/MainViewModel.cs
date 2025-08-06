@@ -36,6 +36,7 @@ namespace WpfLedApp.ViewModels
         public MainViewModel()
         {
             _ledModel = new LedModel(); // モデルを初期化
+            _ledColor = Brushes.Gray; // _ledColorを明示的に初期化 (消灯状態)
             UpdateLedColor(); // 初期LED色を設定 (消灯)
             ToggleLedCommand = new RelayCommand(ToggleLed); // コマンドを初期化
         }
@@ -44,7 +45,7 @@ namespace WpfLedApp.ViewModels
         /// LEDの状態を切り替えるメソッドです。
         /// ボタンが押されたときにこのメソッドが実行されます。
         /// </summary>
-        private void ToggleLed(object parameter)
+        private void ToggleLed(object? parameter) // parameterをNull許容に
         {
             _ledModel.IsOn = !_ledModel.IsOn; // LEDの状態を反転
             UpdateLedColor(); // LEDの色を更新
@@ -60,7 +61,7 @@ namespace WpfLedApp.ViewModels
         }
 
         // INotifyPropertyChangedインターフェースの実装
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged; // Null許容に
 
         /// <summary>
         /// プロパティが変更されたときにViewに通知するためのヘルパーメソッドです。
