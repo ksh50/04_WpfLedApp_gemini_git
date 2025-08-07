@@ -23,6 +23,8 @@ namespace WpfLedApp.ViewModels
         public MainViewModel()
         {
             _ledModel = new LedModel();
+            // _ledColor フィールドを明示的に初期化
+            _ledColor = Brushes.Gray;
             UpdateLedColor();
         }
 
